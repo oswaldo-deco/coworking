@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yuri_terato\\Desktop\\Coworking_Trabalho\\Gestao\\Coworking\\Coworking.csproj": {}
+    "C:\\Users\\Yuri_terato\\Documents\\GitHub\\coworking\\Gestao\\Coworking\\Coworking.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yuri_terato\\Desktop\\Coworking_Trabalho\\Gestao\\Coworking\\Coworking.csproj": {
+    "C:\\Users\\Yuri_terato\\Documents\\GitHub\\coworking\\Gestao\\Coworking\\Coworking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yuri_terato\\Desktop\\Coworking_Trabalho\\Gestao\\Coworking\\Coworking.csproj",
+        "projectUniqueName": "C:\\Users\\Yuri_terato\\Documents\\GitHub\\coworking\\Gestao\\Coworking\\Coworking.csproj",
         "projectName": "Coworking",
-        "projectPath": "C:\\Users\\Yuri_terato\\Desktop\\Coworking_Trabalho\\Gestao\\Coworking\\Coworking.csproj",
+        "projectPath": "C:\\Users\\Yuri_terato\\Documents\\GitHub\\coworking\\Gestao\\Coworking\\Coworking.csproj",
         "packagesPath": "C:\\Users\\Yuri_terato\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Yuri_terato\\Desktop\\Coworking_Trabalho\\Gestao\\Coworking\\obj\\",
+        "outputPath": "C:\\Users\\Yuri_terato\\Documents\\GitHub\\coworking\\Gestao\\Coworking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Yuri_terato\\AppData\\Roaming\\NuGet\\NuGet.Config"
