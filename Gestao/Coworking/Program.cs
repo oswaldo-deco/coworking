@@ -78,22 +78,27 @@ app.MapDelete("/bookings/:id", () =>
 
 app.MapGet("/payment", () =>
 {
+    PaymentService.getAll()
 })
 
 app.MapGet("/payment/:id", () =>
 {
+    PaymentService.getById()
 })
 
 app.MapPost("/payment/:id", () =>
 {
+    PaymentService.create()
 })
 
 app.MapPut("/payment/:id", () =>
 {
+    PaymentService.update()
 })
 
 app.MapDelete("/payment/:id", () =>
 {
+    PaymentService.delete()
 })
 
 app.MapGet("/kpi", () =>
