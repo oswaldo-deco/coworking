@@ -16,25 +16,95 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/users", () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
 })
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+
+app.MapGet("/users/:id", () =>
+{
+})
+
+app.MapPost("/users/:id", () =>
+{
+})
+
+app.MapPut("/users/:id", () =>
+{
+})
+
+app.MapDelete("/users/:id", () =>
+{
+})
+
+app.MapGet("/spaces", () =>
+{
+})
+
+app.MapGet("/spaces/:id", () =>
+{
+})
+
+app.MapPost("/spaces/:id", () =>
+{
+})
+
+app.MapPut("/spaces/:id", () =>
+{
+})
+
+app.MapDelete("/spaces/:id", () =>
+{
+})
+
+app.MapGet("/bookings", () =>
+{
+})
+
+app.MapGet("/bookings/:id", () =>
+{
+})
+
+app.MapPost("/bookings/:id", () =>
+{
+})
+
+app.MapPut("/bookings/:id", () =>
+{
+})
+
+app.MapDelete("/bookings/:id", () =>
+{
+})
+
+app.MapGet("/payment", () =>
+{
+})
+
+app.MapGet("/payment/:id", () =>
+{
+})
+
+app.MapPost("/payment/:id", () =>
+{
+})
+
+app.MapPut("/payment/:id", () =>
+{
+})
+
+app.MapDelete("/payment/:id", () =>
+{
+})
+
+app.MapGet("/kpi", () =>
+{
+})
+
+
+app.MapPost("/login", () =>
+{
+})
+
 
 app.Run();
 
