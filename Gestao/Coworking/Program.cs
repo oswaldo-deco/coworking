@@ -17,99 +17,104 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/users", () =>
+app.MapGet("/user", () =>
 {
-})
+    UserService.getAll();
+});
 
-app.MapGet("/users/:id", () =>
+app.MapGet("/user/:id", () =>
 {
-})
+    UserService.getById();
+});
 
-app.MapPost("/users/:id", () =>
+app.UserPost("/user/:id", () =>
 {
-})
+    UserService.create();
+});
 
 app.MapPut("/users/:id", () =>
 {
-})
+    UserService.uptade();
+});
 
 app.MapDelete("/users/:id", () =>
 {
-})
+    UserService.delete();
+});
 
 app.MapGet("/spaces", () =>
 {
-})
+});
 
 app.MapGet("/spaces/:id", () =>
 {
-})
+});
 
 app.MapPost("/spaces/:id", () =>
 {
-})
+});
 
 app.MapPut("/spaces/:id", () =>
 {
-})
+});
 
 app.MapDelete("/spaces/:id", () =>
 {
-})
+});
 
 app.MapGet("/bookings", () =>
 {
-})
+});
 
 app.MapGet("/bookings/:id", () =>
 {
-})
+});
 
 app.MapPost("/bookings/:id", () =>
 {
-})
+});
 
 app.MapPut("/bookings/:id", () =>
 {
-})
+});
 
 app.MapDelete("/bookings/:id", () =>
 {
-})
+});
 
 app.MapGet("/payment", () =>
 {
-    PaymentService.getAll()
-})
+    PaymentService.getAll();
+});
 
 app.MapGet("/payment/:id", () =>
 {
-    PaymentService.getById()
-})
+    PaymentService.getById();
+});
 
 app.MapPost("/payment/:id", () =>
 {
-    PaymentService.create()
-})
+    PaymentService.create();
+});
 
 app.MapPut("/payment/:id", () =>
 {
-    PaymentService.update()
-})
+    PaymentService.update();
+});
 
 app.MapDelete("/payment/:id", () =>
 {
-    PaymentService.delete()
-})
+    PaymentService.delete();
+});
 
 app.MapGet("/kpi", () =>
 {
-})
+});
 
 
 app.MapPost("/login", () =>
 {
-})
+});
 
 
 app.Run();
