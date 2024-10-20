@@ -1,0 +1,8 @@
+C:\Users\pedro\Documents\coworking\Gestao\Coworking\obj\Debug\net8.0\Coworking.csproj.AssemblyReference.cache
+C:\Users\pedro\Documents\coworking\Gestao\Coworking\obj\Debug\net8.0\Coworking.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pedro\Documents\coworking\Gestao\Coworking\obj\Debug\net8.0\Coworking.AssemblyInfoInputs.cache
+C:\Users\pedro\Documents\coworking\Gestao\Coworking\obj\Debug\net8.0\Coworking.AssemblyInfo.cs
+C:\Users\pedro\Documents\coworking\Gestao\Coworking\obj\Debug\net8.0\Coworking.csproj.CoreCompileInputs.cache
+C:\Users\pedro\Documents\coworking\Gestao\Coworking\obj\Debug\net8.0\Coworking.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\pedro\Documents\coworking\Gestao\Coworking\obj\Debug\net8.0\Coworking.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\pedro\Documents\coworking\Gestao\Coworking\obj\Debug\net8.0\Coworking.sourcelink.json
