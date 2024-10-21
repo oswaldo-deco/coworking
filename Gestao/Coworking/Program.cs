@@ -157,7 +157,17 @@ app.MapPost("/bookings", ([FromServices] AppDataContext ctx, [FromBody] Booking 
 
 app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromBody] Booking booking) =>
 {
-    Booking.update();
+    Booking? existingBooking = ctx.Booking.Find(id);
+    if (existingBooking == null)
+    {
+        return Results.NotFound();
+    }
+    existingBooking.Name = booking.Name;
+    existingBooking.Capacity = booking.Capacity;
+    existingBooking.PricePerHour = booking.PricePerHour;
+    ctx.Booking.Update(existingBooking);
+    ctx.SaveChanges();
+    return Results.Ok(existingBooking);
 });
 
 app.MapDelete("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
@@ -197,11 +207,11 @@ app.MapDelete("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] s
 
 });
 
-app.MapGet("/kpi", ([FromServices] AppDataContext ctx, [FromServices] AppDataContext ctx) =>
+app.MapGet("/kpi", ([FromServices] AppDataContext ctx) =>
 {
 });
 
-app.MapPost("/login", ([FromServices] AppDataContext ctx, [FromBody] Login login) =>
+app.MapPost("/login", ([FromServices] AppDataContext ctx, [FromBody] User user) =>
 {
 });
 
