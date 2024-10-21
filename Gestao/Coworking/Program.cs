@@ -180,8 +180,7 @@ app.MapGet("/payment", ([FromServices] AppDataContext ctx) =>
 });
 
 app.MapGet("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
-{
-
+{});
 
 app.MapPost("/payment/{id}", ([FromServices] AppDataContext ctx, [FromBody] Payment payment) =>
 {
@@ -201,7 +200,6 @@ app.MapDelete("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] s
 app.MapGet("/kpi", ([FromServices] AppDataContext ctx, [FromServices] AppDataContext ctx) =>
 {
 });
-
 
 app.MapPost("/login", ([FromServices] AppDataContext ctx, [FromBody] Login login) =>
 {
