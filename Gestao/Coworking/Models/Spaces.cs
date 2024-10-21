@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace API.Models
 {
-    public class Space
+    public class Spaces
     {
-        public Space()
+        public Spaces()
         {
             Id = Guid.NewGuid(); // Using Guid to generate IDs
             Reservations = new List<Reservation>(); // Initializing the list of reservations

@@ -1,9 +1,9 @@
+using API.Models;
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//Adicionando o serviço de banco de dados na aplicação
 builder.Services.AddDbContext<AppDataContext>();
 
 var app = builder.Build();
@@ -19,9 +19,9 @@ app.UseHttpsRedirection();
 
 app.MapGet("/user", ([FromServices] AppDataContext ctx) =>
 {
-    if(ctx.Users.Any())
+    if(ctx.User.Any())
     {
-        return Results.Ok(ctx.Users.Tolist());
+        return Results.Ok(ctx.User.ToList());
     }
     return Results.NotFound();
 });
@@ -39,12 +39,12 @@ app.MapGet("/user/:id", ([FromServices] AppDataContext ctx) =>
 
 app.UserPost("/user", ([FromServices] AppDataContext ctx) =>
 {
-    ctx.Users.Add(user);
+    ctx.User.Add(user);
     ctx.SaveChanges();
     return Results.Created();
 });
 
-app.MapPut("/users/:id", ([FromServices] AppDataContext ctx) =>
+app.MapPut("/User/:id", ([FromServices] AppDataContext ctx) =>
 {
     User? user = ctx.User.Find(id);
     if (user == null)
@@ -56,12 +56,12 @@ app.MapPut("/users/:id", ([FromServices] AppDataContext ctx) =>
     user.Cellphone = userAlterado.Cellphone;
     user.TaxNumber = userAlterado.TaxNumber;
     user.Password = userAlterado.Password;
-    ctx.Users.Update(user);
+    ctx.User.Update(user);
     ctx.SaveChanges();
     return Results.Ok(user);
 });
 
-app.MapDelete("/users/:id", ([FromServices] AppDataContext ctx) =>
+app.MapDelete("/User/:id", ([FromServices] AppDataContext ctx) =>
 {
     User? user = ctx.User.Find(id);
     
@@ -70,14 +70,14 @@ app.MapDelete("/users/:id", ([FromServices] AppDataContext ctx) =>
         return Results.NotFound();
     }
 
-    ctx.Users.Remove(user);
+    ctx.User.Remove(user);
     ctx.SaveChanges();
     return Results.Ok(user);
 });
 
 app.MapGet("/spaces", ([FromServices] AppDataContext ctx) =>
 {
-    if(ctx.Users.Any())
+    if(ctx.User.Any())
     {
         return Results.Ok(ctx.Spaces.Tolist());
     }
@@ -112,7 +112,7 @@ app.MapPut("/spaces/:id", ([FromServices] AppDataContext ctx) =>
     existingSpace.Name = space.Name;
     existingSpace.Capacity = space.Capacity;
     existingSpace.PricePerHour = space.PricePerHour;
-    ctx.Users.Update(user);
+    ctx.User.Update(user);
     ctx.SaveChanges();
     return Results.Ok(user);
 });
@@ -134,7 +134,7 @@ app.MapGet("/bookings", ([FromServices] AppDataContext ctx) =>
         return Results.Ok(ctx.Bookings.Tolist());
     }
     return Results.NotFound();
-})
+});
 
 app.MapGet("/bookings/:id", ([FromServices] AppDataContext ctx) =>
 {
@@ -145,19 +145,19 @@ app.MapGet("/bookings/:id", ([FromServices] AppDataContext ctx) =>
         return Results.NotFound();
     }
     return Results.Ok(bookings);
-})
+});
 
 app.MapPost("/bookings", ([FromServices] AppDataContext ctx) =>
 {
     ctx.Bookings.Add(bookings);
     ctx.SaveChanges();
     return Results.Created();
-})
+});
 
 app.MapPut("/bookings/:id", ([FromServices] AppDataContext ctx) =>
 {
-    BookingsService.update()
-})
+    BookingsService.update();
+});
 
 app.MapDelete("/bookings/:id", ([FromServices] AppDataContext ctx) =>
 {
@@ -171,7 +171,7 @@ app.MapDelete("/bookings/:id", ([FromServices] AppDataContext ctx) =>
     ctx.Bookings.Remove(bookings);
     ctx.SaveChanges();
     return Results.Ok(bookings);
-})
+});
 
 app.MapGet("/payment", ([FromServices] AppDataContext ctx) =>
 {

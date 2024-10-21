@@ -1,41 +1,42 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+// using System;
+// using API.Models;
+// using System.Collections.Generic;
+// using System.Linq;
 
-public class SpaceRepository
-{
-    private readonly AppDbContext _context;
+// public class SpacesRepository
+// {
 
-    public SpaceRepository(AppDbContext context)
-    {
-        _context = context;
-    }
 
-    public List<Space> GetAll()
-    {
-        return _context.Spaces.ToList();
-    }
+//     public SpacesRepository()
+//     {
+//         _context = context;
+//     }
 
-    public Space GetById(Guid id)
-    {
-        return _context.Spaces.Find(id); // Remove the second return statement
-    }
+//     public List<Spaces> GetAll()
+//     {
+//         return _context.Spacess.ToList();
+//     }
 
-    public void Add(Space space)
-    {
-        _context.Spaces.Add(space);
-        _context.SaveChanges();
-    }
+//     public Spaces GetById(Guid id)
+//     {
+//         return _context.Spacess.Find(id); // Remove the second return statement
+//     }
 
-    public void Update(Space space)
-    {
-        _context.Spaces.Update(space);
-        _context.SaveChanges();
-    }
+//     public void Add(Spaces Spaces)
+//     {
+//         _context.Spacess.Add(Spaces);
+//         _context.SaveChanges();
+//     }
 
-    public void Remove(Space space)
-    {
-        _context.Spaces.Remove(space);
-        _context.SaveChanges();
-    }
-}
+//     public void Update(Spaces Spaces)
+//     {
+//         _context.Spacess.Update(Spaces);
+//         _context.SaveChanges();
+//     }
+
+//     public void Remove(Spaces Spaces)
+//     {
+//         _context.Spacess.Remove(Spaces);
+//         _context.SaveChanges();
+//     }
+// }

@@ -1,43 +1,43 @@
-using API.Models;
+// using API.Models;
 
-private class BookingService {
-    public BookingService() {
-        // Construtor
-    }
+// public class BookingService {
+//     public BookingService() {
+//         // Construtor
+//     }
 
-    public BookingModel[] GetAll() {
-        return BookingRepositories.GetAll(); 
-    }
-    public BookingModel Create(string userName, DateTime date) {
-        BookingModel booking = new BookingModel {
-            Users = userName,
-            Date = date,
-            Id = BookingRepositories.GenerateNewId()
-        };
+//     public Booking[] GetAll() {
+//         return BookingRepositories.GetAll(); 
+//     }
+//     public Booking Create(string userName, DateTime date) {
+//         Booking booking = new Booking {
+//             Users = userName,
+//             Date = date,
+//             Id = BookingRepositories.GenerateNewId()
+//         };
 
-        BookingRepositories.Create(booking);
-        return booking;
-    }
+//         BookingRepositories.Create(booking);
+//         return booking;
+//     }
 
-    public BookingModel Update(string id, string newUserName, DateTime newDate) {
-        BookingModel bookingToUpdate = BookingRepositories.GetById(id);
+//     public Booking Update(string id, string newUserName, DateTime newDate) {
+//         Booking bookingToUpdate = BookingRepositories.GetById(id);
 
-        if (bookingToUpdate != null) {
-            bookingToUpdate.Users = newUserName;
-            bookingToUpdate.Date = newDate;
+//         if (bookingToUpdate != null) {
+//             bookingToUpdate.Users = newUserName;
+//             bookingToUpdate.Date = newDate;
 
-            BookingRepositories.UpdateById(id, bookingToUpdate);
-            return bookingToUpdate; 
-        }
+//             BookingRepositories.UpdateById(id, bookingToUpdate);
+//             return bookingToUpdate; 
+//         }
 
-        throw new Exception("Booking não encontrado.");
-    }
+//         throw new Exception("Booking não encontrado.");
+//     }
 
-    public void Delete(string id) {
-        BookingRepositories.DeleteById(id);
-    }
+//     public void Delete(string id) {
+//         BookingRepositories.DeleteById(id);
+//     }
 
-    public BookingModel GetById(string id) {
-        return BookingRepositories.GetById(id); 
-    }
-}
+//     public Booking GetById(string id) {
+//         return BookingRepositories.GetById(id); 
+//     }
+// }
