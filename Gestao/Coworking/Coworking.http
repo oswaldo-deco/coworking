@@ -33,3 +33,29 @@ Content-Type: application/json
     "taxNumber" : "888888888",
     "Password" : "888888888"
 }
+
+###Buscar Payment
+GET http://localhost:5071/payment/
+
+###Cadastrat Payment
+POST http://localhost:5071/payment/
+Content-Type: application/json
+
+{
+    "valor": 150,
+    "status": ,
+    "Date": "2024-10-20T10:00:00"
+}
+
+###Deletar payment
+DELETE http://localhost:5071/payment/bf78ee59-e447-4e3e-a0d0-179bbe07876d
+
+###Altera Payment
+PUT http://localhost:5071/payment/12aea8f2-1f62-47b1-9879-d1235f3711d4
+Content-Type: application/json
+
+{
+    "valor": 200,
+    "status": ,
+    "Date": "2024-10-21T10:00:00"
+}

@@ -208,7 +208,7 @@ app.MapPost("/payment", ([FromServices] AppDataContext ctx, [FromBody] Payment p
 app.MapPut("/payment/{id}", ([FromServices] AppDataContext ctx, [FromBody] Payment payment, [FromRoute] string id) =>
 {
     Payment? existingPayment = ctx.Payment.Find(id);
-    if (existingSpace == null)
+    if (existingPayment == null)
     {
         return Results.NotFound();
     }
@@ -237,13 +237,13 @@ app.MapDelete("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] s
 
 app.MapPost("/login", ([FromServices] AppDataContext ctx, [FromBody] User user) =>
 {
-    string email = user.email
-    string userInDatabase = ctx.User.Find(email)
+    string Email = user.Email;
+    User userInDatabase = ctx.User.Find(Email);
     if(user.Password == userInDatabase.Password){
-        return Results.Ok()
+        return Results.Ok();
     }
 
-    return Results.Unauthorized()
+    return Results.Unauthorized();
 });
 
 
