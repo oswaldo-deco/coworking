@@ -4,3 +4,4 @@ GET {{Coworking_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+REQUEST

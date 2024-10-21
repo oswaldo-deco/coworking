@@ -85,7 +85,7 @@ app.MapGet("/spaces", ([FromServices] AppDataContext ctx) =>
     return Results.NotFound();
 });
 
-app.MapGet("/spaces//{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
+app.MapGet("/spaces/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     Spaces? space = ctx.Spaces.Find(id);
 
@@ -155,7 +155,7 @@ app.MapPost("/bookings", ([FromServices] AppDataContext ctx, [FromBody] Booking 
     return Results.Created();
 });
 
-app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromBody] Booking booking) =>
+app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromBody] Booking booking, [FromRoute] string id) =>
 {
     Booking? existingBooking = ctx.Booking.Find(id);
     if (existingBooking == null)
