@@ -1,7 +1,35 @@
-@Coworking_HostAddress = http://localhost:5071
+### Requisação para a raiz da aplicação
+GET http://localhost:5085
 
-GET {{Coworking_HostAddress}}/weatherforecast/
-Accept: application/json
+### Listar users
+GET http://localhost:5085/user
 
-###
-REQUEST
+### Buscar user
+GET http://localhost:5085/user/6e50b9cb-b88c-4f93-8a47-433ca16f94d0
+
+### Cadastrar user
+POST http://localhost:5085/user
+Content-Type: application/json
+
+{
+    "Name" : "Oswaldo Deco",
+    "Email" : "oswaldo96@live.com",
+    "Cellphone" : 999999999,
+    "taxNumber" : "999999999",
+    "Password" : "999999999",
+}
+
+### Deletar user
+DELETE http://localhost:5085/user/
+
+### Alterar user
+PUT http://localhost:5085/user/e36e3c7f-ed18-4a55-b044-a89c9b4b6934
+Content-Type: application/json
+
+{
+    "Name" : "Oswaldo Deco Costa",
+    "Email" : "oswaldo100@live.com",
+    "Cellphone" : 888888888,
+    "taxNumber" : "888888888",
+    "Password" : "888888888",
+}
