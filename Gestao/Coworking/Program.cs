@@ -64,23 +64,28 @@ app.MapDelete("/spaces/:id", () =>
 
 app.MapGet("/bookings", () =>
 {
-});
+    BookingsService.getAll()
+})
 
 app.MapGet("/bookings/:id", () =>
 {
-});
+    BookingsService.getById()
+})
 
-app.MapPost("/bookings/:id", () =>
+app.MapPost("/bookings", () =>
 {
-});
+    BookingsService.create()
+})
 
 app.MapPut("/bookings/:id", () =>
 {
-});
+    BookingsService.update()
+})
 
 app.MapDelete("/bookings/:id", () =>
 {
-});
+    BookingService.delete()
+})
 
 app.MapGet("/payment", () =>
 {
