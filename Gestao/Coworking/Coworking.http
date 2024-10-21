@@ -1,14 +1,14 @@
 ### Requisação para a raiz da aplicação
-GET http://localhost:5085
+GET http://localhost:5071
 
 ### Listar users
-GET http://localhost:5085/user
+GET http://localhost:5071/user
 
 ### Buscar user
-GET http://localhost:5085/user/6e50b9cb-b88c-4f93-8a47-433ca16f94d0
+GET http://localhost:5071/user/741a6a56-ce34-46d8-964c-02d0baae5155
 
 ### Cadastrar user
-POST http://localhost:5085/user
+POST http://localhost:5071/user
 Content-Type: application/json
 
 {
@@ -16,14 +16,14 @@ Content-Type: application/json
     "Email" : "oswaldo96@live.com",
     "Cellphone" : 999999999,
     "taxNumber" : "999999999",
-    "Password" : "999999999",
+    "Password" : "999999999"
 }
 
 ### Deletar user
-DELETE http://localhost:5085/user/
+DELETE http://localhost:5071/user/741a6a56-ce34-46d8-964c-02d0baae5155
 
 ### Alterar user
-PUT http://localhost:5085/user/e36e3c7f-ed18-4a55-b044-a89c9b4b6934
+PUT http://localhost:5071/user/741a6a56-ce34-46d8-964c-02d0baae5155
 Content-Type: application/json
 
 {
@@ -31,5 +31,5 @@ Content-Type: application/json
     "Email" : "oswaldo100@live.com",
     "Cellphone" : 888888888,
     "taxNumber" : "888888888",
-    "Password" : "888888888",
+    "Password" : "888888888"
 }
