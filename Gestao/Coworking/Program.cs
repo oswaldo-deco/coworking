@@ -180,33 +180,70 @@ app.MapDelete("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromRoute] 
 
 app.MapGet("/payment", ([FromServices] AppDataContext ctx) =>
 {
-
+    if(ctx.Payment.Any())
+    {
+        return Results.Ok(ctx.Payment.ToList());
+    }
+    return Results.NotFound();
 });
 
 app.MapGet("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
-{});
-
-app.MapPost("/payment/{id}", ([FromServices] AppDataContext ctx, [FromBody] Payment payment) =>
 {
+    Payment? payment = ctx.Payment.Find(id);
 
+    if (payment == null)
+    {
+        return Results.NotFound();
+    }
+    return Results.Ok(payment);
 });
 
-app.MapPut("/payment/{id}", ([FromServices] AppDataContext ctx, [FromBody] Payment payment) =>
+app.MapPost("/payment", ([FromServices] AppDataContext ctx, [FromBody] Payment payment) =>
 {
+    ctx.Payment.Add(payment);
+    ctx.SaveChanges();
+    return Results.Created();
+});
 
+app.MapPut("/payment/{id}", ([FromServices] AppDataContext ctx, [FromBody] Payment payment, [FromRoute] string id) =>
+{
+    Payment? existingPayment = ctx.Payment.Find(id);
+    if (existingSpace == null)
+    {
+        return Results.NotFound();
+    }
+    existingPayment.userId = payment.userId;
+    existingPayment.spaceId = payment.spaceId;
+    existingPayment.Valor = payment.Valor;
+    existingPayment.status = payment.status;
+    ctx.Payment.Update(existingPayment);
+    ctx.SaveChanges();
+    return Results.Ok(existingPayment);
 });
 
 app.MapDelete("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
+    Payment? payment = ctx.Payment.Find(id);
+    
+    if (payment == null)
+    {
+        return Results.NotFound();
+    }
 
-});
-
-app.MapGet("/kpi", ([FromServices] AppDataContext ctx) =>
-{
+    ctx.Payment.Remove(payment);
+    ctx.SaveChanges();
+    return Results.Ok(payment);
 });
 
 app.MapPost("/login", ([FromServices] AppDataContext ctx, [FromBody] User user) =>
 {
+    string email = user.email
+    string userInDatabase = ctx.User.Find(email)
+    if(user.Password == userInDatabase.Password){
+        return Results.Ok()
+    }
+
+    return Results.Unauthorized()
 });
 
 
