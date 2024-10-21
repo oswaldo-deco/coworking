@@ -162,9 +162,8 @@ app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromBody] Book
     {
         return Results.NotFound();
     }
-    existingBooking.Name = booking.Name;
-    existingBooking.Capacity = booking.Capacity;
-    existingBooking.PricePerHour = booking.PricePerHour;
+    existingBooking.Users = booking.Users;
+    existingBooking.Date = booking.Date;
     ctx.Booking.Update(existingBooking);
     ctx.SaveChanges();
     return Results.Ok(existingBooking);
