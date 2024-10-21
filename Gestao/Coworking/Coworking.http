@@ -59,3 +59,33 @@ Content-Type: application/json
     "status": ,
     "Date": "2024-10-21T10:00:00"
 }
+
+###Listar Spaces
+GET http://localhost:5071/spaces
+
+###Buscar Space 
+GET http://localhost:5071/spaces/{id}
+
+
+###Cadastrat Space
+POST http://localhost:5071/spaces
+Content-Type: application/json
+
+{
+    "Name": "Espaço A",
+    "Capacity": 50,
+    "PricePerHour": 150
+}
+
+###Deletar space
+DELETE http://localhost:5071/spaces/{id}
+
+###Alterar Space
+PUT http://localhost:5071/spaces/{id}
+Content-Type: application/json
+
+{
+    "Name": "Espaço A Modificado",
+    "Capacity": 75,
+    "PricePerHour": 200
+}
