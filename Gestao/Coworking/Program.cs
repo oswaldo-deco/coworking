@@ -26,7 +26,7 @@ app.MapGet("/user", ([FromServices] AppDataContext ctx) =>
     return Results.NotFound();
 });
 
-app.MapGet("/user/:id", ([FromServices] AppDataContext ctx) =>
+app.MapGet("/user/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     User? user = ctx.User.Find(id);
 
@@ -44,7 +44,7 @@ app.UserPost("/user", ([FromServices] AppDataContext ctx) =>
     return Results.Created();
 });
 
-app.MapPut("/User/:id", ([FromServices] AppDataContext ctx) =>
+app.MapPut("/User/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     User? user = ctx.User.Find(id);
     if (user == null)
@@ -61,7 +61,7 @@ app.MapPut("/User/:id", ([FromServices] AppDataContext ctx) =>
     return Results.Ok(user);
 });
 
-app.MapDelete("/User/:id", ([FromServices] AppDataContext ctx) =>
+app.MapDelete("/User/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     User? user = ctx.User.Find(id);
     
@@ -84,7 +84,7 @@ app.MapGet("/spaces", ([FromServices] AppDataContext ctx) =>
     return Results.NotFound();
 });
 
-app.MapGet("/spaces/:id", ([FromServices] AppDataContext ctx) =>
+app.MapGet("/spaces/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     User? user = ctx.Spaces.Find(id);
 
@@ -102,7 +102,7 @@ app.MapPost("/spaces", ([FromServices] AppDataContext ctx) =>
     return Results.Created();
 });
 
-app.MapPut("/spaces/:id", ([FromServices] AppDataContext ctx) =>
+app.MapPut("/spaces/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     Space? existingSpace = ctx.Space.Find(id);
     if (user == null)
@@ -117,7 +117,7 @@ app.MapPut("/spaces/:id", ([FromServices] AppDataContext ctx) =>
     return Results.Ok(user);
 });
 
-app.MapDelete("/spaces/:id", ([FromServices] AppDataContext ctx) =>
+app.MapDelete("/spaces/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
         Space? spaceToRemove = ctx.Space.Find(id);
         if (spaceToRemove != null)
@@ -136,7 +136,7 @@ app.MapGet("/bookings", ([FromServices] AppDataContext ctx) =>
     return Results.NotFound();
 });
 
-app.MapGet("/bookings/:id", ([FromServices] AppDataContext ctx) =>
+app.MapGet("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     Bookings? bookings = ctx.Bookings.Find(id);
 
@@ -154,12 +154,12 @@ app.MapPost("/bookings", ([FromServices] AppDataContext ctx) =>
     return Results.Created();
 });
 
-app.MapPut("/bookings/:id", ([FromServices] AppDataContext ctx) =>
+app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     BookingsService.update();
 });
 
-app.MapDelete("/bookings/:id", ([FromServices] AppDataContext ctx) =>
+app.MapDelete("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     Bookings? bookings = ctx.Bookings.Find(id);
     
@@ -178,22 +178,22 @@ app.MapGet("/payment", ([FromServices] AppDataContext ctx) =>
     PaymentService.getAll();
 });
 
-app.MapGet("/payment/:id", ([FromServices] AppDataContext ctx) =>
+app.MapGet("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     PaymentService.getById();
 });
 
-app.MapPost("/payment/:id", ([FromServices] AppDataContext ctx) =>
+app.MapPost("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     PaymentService.create();
 });
 
-app.MapPut("/payment/:id", ([FromServices] AppDataContext ctx) =>
+app.MapPut("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     PaymentService.update();
 });
 
-app.MapDelete("/payment/:id", ([FromServices] AppDataContext ctx) =>
+app.MapDelete("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     PaymentService.delete();
 });
