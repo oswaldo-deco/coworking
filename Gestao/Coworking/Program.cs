@@ -37,14 +37,14 @@ app.MapGet("/user/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string 
     return Results.Ok(user);
 });
 
-app.UserPost("/user", ([FromServices] AppDataContext ctx) =>
+app.UserPost("/user", ([FromBody] User user) =>
 {
     ctx.User.Add(user);
     ctx.SaveChanges();
     return Results.Created();
 });
 
-app.MapPut("/User/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
+app.MapPut("/User/{id}", ([FromBody] User user) =>
 {
     User? user = ctx.User.Find(id);
     if (user == null)
@@ -95,14 +95,14 @@ app.MapGet("/spaces/{id}", ([FromServices] AppDataContext ctx, [FromRoute] strin
     return Results.Ok(user);
 });
 
-app.MapPost("/spaces", ([FromServices] AppDataContext ctx) =>
+app.MapPost("/spaces", ([FromBody] Spaces space) =>
 {
     ctx.Spaces.Add(space);
     ctx.SaveChanges();
     return Results.Created();
 });
 
-app.MapPut("/spaces/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
+app.MapPut("/spaces/{id}", ([FromBody] Spaces space) =>
 {
     Space? existingSpace = ctx.Space.Find(id);
     if (user == null)
@@ -147,14 +147,14 @@ app.MapGet("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromRoute] str
     return Results.Ok(bookings);
 });
 
-app.MapPost("/bookings", ([FromServices] AppDataContext ctx) =>
+app.MapPost("/bookings", ([FromBody] Bookings bookings) =>
 {
     ctx.Bookings.Add(bookings);
     ctx.SaveChanges();
     return Results.Created();
 });
 
-app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
+app.MapPut("/bookings/{id}", ([FromBody] Bookings bookings) =>
 {
     BookingsService.update();
 });
@@ -183,12 +183,12 @@ app.MapGet("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] stri
     PaymentService.getById();
 });
 
-app.MapPost("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
+app.MapPost("/payment/{id}", ([FromBody] Payment payment) =>
 {
     PaymentService.create();
 });
 
-app.MapPut("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
+app.MapPut("/payment/{id}", ([FromBody] Payment payment) =>
 {
     PaymentService.update();
 });
@@ -203,7 +203,7 @@ app.MapGet("/kpi", ([FromServices] AppDataContext ctx) =>
 });
 
 
-app.MapPost("/login", ([FromServices] AppDataContext ctx) =>
+app.MapPost("/login", ([FromBody] Login login) =>
 {
 });
 
