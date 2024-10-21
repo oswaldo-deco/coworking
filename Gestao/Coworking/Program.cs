@@ -73,7 +73,7 @@ app.MapDelete("/User/{id}", ([FromServices] AppDataContext ctx, [FromRoute] stri
 
 app.MapGet("/spaces", ([FromServices] AppDataContext ctx) =>
 {
-    if(ctx.User.Any())
+    if(ctx.Spaces.Any())
     {
         return Results.Ok(ctx.Spaces.ToList());
     }
@@ -158,7 +158,7 @@ app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromBody] Book
         return Results.NotFound();
     }
     existingBooking.Users = booking.Users;
-    existingBooking.Date = booking.Date;
+    existingBooking.CriadoEm = booking.CriadoEm;
     ctx.Booking.Update(existingBooking);
     ctx.SaveChanges();
     return Results.Ok(existingBooking);

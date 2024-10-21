@@ -64,10 +64,10 @@ Content-Type: application/json
 GET http://localhost:5071/spaces
 
 ###Buscar Space 
-GET http://localhost:5071/spaces/{id}
+GET http://localhost:5071/spaces/E9112449-A026-45EC-8D08-6E7A41DAFA7E
 
 
-###Cadastrat Space
+###Cadastrar Space
 POST http://localhost:5071/spaces
 Content-Type: application/json
 
@@ -81,11 +81,34 @@ Content-Type: application/json
 DELETE http://localhost:5071/spaces/{id}
 
 ###Alterar Space
-PUT http://localhost:5071/spaces/{id}
+PUT http://localhost:5071/spaces/482c99c3-4e6b-458a-ac1a-024c8bfc8ea7
 Content-Type: application/json
 
 {
     "Name": "Espaço A Modificado",
-    "Capacity": 75,
+    "Capacity": 99,
     "PricePerHour": 200
+}
+
+###Buscar Booking 
+GET http://localhost:5071/bookings
+
+
+###cadastrar booking
+POST http://localhost:5071/bookings
+Content-Type: application/json
+
+{
+    "Users": "Espaço A"
+}
+
+###deletar booking
+DELETE http://localhost:5071/bookings/11faa79d-4874-401f-8b99-ac5fca8107fd
+
+###alterar booking
+PUT http://localhost:5071/bookings/11faa79d-4874-401f-8b99-ac5fca8107fd
+Content-Type: application/json
+
+{
+    "users": "Espaço A Modificado"
 }
