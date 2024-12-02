@@ -78,7 +78,7 @@ Content-Type: application/json
 }
 
 ###Deletar space
-DELETE http://localhost:5071/spaces/38f49513-9680-476f-9008-78eef29e71fa
+DELETE http://localhost:5071/spaces/e43828e8-69a3-4134-a4f2-daa59fbbaeb6
 
 ###Alterar Space
 PUT http://localhost:5071/spaces/38f49513-9680-476f-9008-78eef29e71fa
