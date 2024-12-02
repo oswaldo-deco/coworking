@@ -112,3 +112,34 @@ Content-Type: application/json
 {
     "users": "Espaço A Modificado"
 }
+
+
+GET http://localhost:5071/Spaces/
+
+
+Post http://localhost:5071/Spaces
+Content-type: application/json
+
+{
+    "Name" : "Sala01",
+    "Capacity" :  888888888,
+    "PricePerHour" :  888888888.88,
+
+}
+
+###DELETE
+Post http://localhost:5071/Spaces/
+
+Put http://localhost:5071/Spaces
+Content-type: application/json
+
+{
+    "Name" : "Sala01",
+    "Capacity" : 888888888,
+    "PricePerHour" : 888888888.88,
+
+}
+
+###Listar Spaces
+Post http://localhost:5071/spaces/
+
