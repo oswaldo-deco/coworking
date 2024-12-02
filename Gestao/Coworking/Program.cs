@@ -1,16 +1,39 @@
+using Coworking.Models;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore; 
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Adicionando o serviço de banco de dados na aplicação
+builder.Services.AddDbContext<AppDataContext>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddDbContext<AppDataContext>();
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+
+
+app.UseCors("AllowAllOrigins");
+
+app.MapGet("/", () => "API está funcionando!");
+
 
 
 app.UseHttpsRedirection();
+
+app.MapGet("/", () => "API está funcionando!");
+
 
 app.MapGet("/user", ([FromServices] AppDataContext ctx) =>
 {
@@ -36,7 +59,7 @@ app.MapPost("/user", ([FromServices] AppDataContext ctx, [FromBody] User user) =
 {
     ctx.User.Add(user);
     ctx.SaveChanges();
-    return Results.Created();
+    return Results.Created($"/user/{user.Id}", user);
 });
 
 app.MapPut("/User/{id}", ([FromServices] AppDataContext ctx, [FromBody] User userAlterado, [FromRoute] string id) =>
@@ -50,7 +73,7 @@ app.MapPut("/User/{id}", ([FromServices] AppDataContext ctx, [FromBody] User use
     userFound.Name = userAlterado.Name;
     userFound.Email = userAlterado.Email;
     userFound.Cellphone = userAlterado.Cellphone;
-    userFound.taxNumber = userAlterado.taxNumber;
+    userFound.TaxNumber = userAlterado.TaxNumber;
     userFound.Password = userAlterado.Password;
     ctx.User.Update(userFound);
     ctx.SaveChanges();
@@ -68,12 +91,13 @@ app.MapDelete("/User/{id}", ([FromServices] AppDataContext ctx, [FromRoute] stri
 
     ctx.User.Remove(user);
     ctx.SaveChanges();
+    ctx.SaveChangesAsync();
     return Results.Ok(user);
 });
 
 app.MapGet("/spaces", ([FromServices] AppDataContext ctx) =>
 {
-    if(ctx.User.Any())
+    if(ctx.Spaces.Any())
     {
         return Results.Ok(ctx.Spaces.ToList());
     }
@@ -95,7 +119,7 @@ app.MapPost("/spaces", ([FromServices] AppDataContext ctx, [FromBody] Spaces spa
 {
     ctx.Spaces.Add(space);
     ctx.SaveChanges();
-    return Results.Created();
+    return Results.Created($"/spaces/{space.Id}", space);
 });
 
 app.MapPut("/spaces/{id}", ([FromServices] AppDataContext ctx, [FromBody] Spaces space, [FromRoute] string id) =>
@@ -147,7 +171,7 @@ app.MapPost("/bookings", ([FromServices] AppDataContext ctx, [FromBody] Booking 
 {
     ctx.Booking.Add(booking);
     ctx.SaveChanges();
-    return Results.Created();
+    return Results.Created($"/bookings/{booking.Id}", booking);
 });
 
 app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromBody] Booking booking, [FromRoute] string id) =>
@@ -157,8 +181,8 @@ app.MapPut("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromBody] Book
     {
         return Results.NotFound();
     }
-    existingBooking.Users = booking.Users;
-    existingBooking.Date = booking.Date;
+    existingBooking.User = booking.User;
+    existingBooking.CriadoEm = booking.CriadoEm;
     ctx.Booking.Update(existingBooking);
     ctx.SaveChanges();
     return Results.Ok(existingBooking);
@@ -180,33 +204,70 @@ app.MapDelete("/bookings/{id}", ([FromServices] AppDataContext ctx, [FromRoute] 
 
 app.MapGet("/payment", ([FromServices] AppDataContext ctx) =>
 {
-
+    if(ctx.Payment.Any())
+    {
+        return Results.Ok(ctx.Payment.ToList());
+    }
+    return Results.NotFound();
 });
 
 app.MapGet("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
-{});
-
-app.MapPost("/payment/{id}", ([FromServices] AppDataContext ctx, [FromBody] Payment payment) =>
 {
+    Payment? payment = ctx.Payment.Find(id);
 
+    if (payment == null)
+    {
+        return Results.NotFound();
+    }
+    return Results.Ok(payment);
 });
 
-app.MapPut("/payment/{id}", ([FromServices] AppDataContext ctx, [FromBody] Payment payment) =>
+app.MapPost("/payment", ([FromServices] AppDataContext ctx, [FromBody] Payment payment) =>
 {
+    ctx.Payment.Add(payment);
+    ctx.SaveChanges();
+    return Results.Created($"/payment/{payment.Id}", payment);
+});
 
+app.MapPut("/payment/{id}", ([FromServices] AppDataContext ctx, [FromBody] Payment payment, [FromRoute] string id) =>
+{
+    Payment? existingPayment = ctx.Payment.Find(id);
+    if (existingPayment == null)
+    {
+        return Results.NotFound();
+    }
+    existingPayment.UserId = payment.UserId;
+    existingPayment.SpaceId = payment.SpaceId;
+    existingPayment.Valor = payment.Valor;
+    existingPayment.Status = payment.Status;
+    ctx.Payment.Update(existingPayment);
+    ctx.SaveChanges();
+    return Results.Ok(existingPayment);
 });
 
 app.MapDelete("/payment/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
+    Payment? payment = ctx.Payment.Find(id);
+    
+    if (payment == null)
+    {
+        return Results.NotFound();
+    }
 
-});
-
-app.MapGet("/kpi", ([FromServices] AppDataContext ctx) =>
-{
+    ctx.Payment.Remove(payment);
+    ctx.SaveChanges();
+    return Results.Ok(payment);
 });
 
 app.MapPost("/login", ([FromServices] AppDataContext ctx, [FromBody] User user) =>
 {
+    string Email = user.Email;
+    User userInDatabase = ctx.User.Find(Email);
+    if(user.Password == userInDatabase.Password){
+        return Results.Ok();
+    }
+
+    return Results.Unauthorized();
 });
 
 

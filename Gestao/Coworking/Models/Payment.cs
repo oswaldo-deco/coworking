@@ -1,3 +1,5 @@
+using Coworking.Models;
+
 namespace API.Models;
 
 public class Payment
@@ -8,9 +10,10 @@ public class Payment
         CriadoEm = DateTime.Now;
     }
     public string? Id { get; set; }
-    public string? Nome { get; set; }
-    public string? Descricao { get; set; }
     public double Valor { get; set; }
-    public int Quantidade { get; set; }
+    public string? Status { get; set; }
     public DateTime CriadoEm { get; set; }
+    public User? User { get; set; }
+    public string? UserId { get; set; }
+    public string? SpaceId { get; set; }
 }

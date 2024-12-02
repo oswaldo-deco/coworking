@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Coworking.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20241021022505_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241202012259_Migracao")]
+    partial class Migracao
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
             modelBuilder.Entity("API.Models.Payment", b =>
                 {
@@ -28,49 +28,51 @@ namespace Coworking.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("SpaceId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Status")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
                     b.Property<double>("Valor")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Payment");
                 });
 
-            modelBuilder.Entity("API.Models.Reservation", b =>
+            modelBuilder.Entity("Booking", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime>("CriadoEm")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("SpacesId")
+                    b.Property<string>("SpacesId")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<string>("UserId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SpacesId");
 
-                    b.ToTable("Reservation");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("API.Models.Spaces", b =>
+            modelBuilder.Entity("Coworking.Models.Spaces", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Capacity")
@@ -88,7 +90,7 @@ namespace Coworking.Migrations
                     b.ToTable("Spaces");
                 });
 
-            modelBuilder.Entity("API.Models.User", b =>
+            modelBuilder.Entity("Coworking.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -108,7 +110,7 @@ namespace Coworking.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("taxNumber")
+                    b.Property<string>("TaxNumber")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -116,34 +118,28 @@ namespace Coworking.Migrations
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("API.Models.Payment", b =>
+                {
+                    b.HasOne("Coworking.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Booking", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Users")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Booking");
-                });
-
-            modelBuilder.Entity("API.Models.Reservation", b =>
-                {
-                    b.HasOne("API.Models.Spaces", null)
-                        .WithMany("Reservations")
+                    b.HasOne("Coworking.Models.Spaces", "Spaces")
+                        .WithMany()
                         .HasForeignKey("SpacesId");
-                });
 
-            modelBuilder.Entity("API.Models.Spaces", b =>
-                {
-                    b.Navigation("Reservations");
+                    b.HasOne("Coworking.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Spaces");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

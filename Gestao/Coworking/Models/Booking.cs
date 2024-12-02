@@ -1,13 +1,16 @@
-
-using System; // Para DateTime
+using Coworking.Models;
 
 public class Booking {
-    public int Id { get; set; } // Identificador único do booking
-    public string Users { get; set; } // Armazena o nome do usuário que fez a reserva
-    public DateTime Date { get; set; } // Representa a data e a hora da reserva
+    public string Id { get; set; }
+    public User User { get; set; }
+    public DateTime CriadoEm { get; set; }
+    public Spaces Spaces { get; set; }
 
-    // Construtor opcional, se necessário
     public Booking() {
-        // Inicializações, se necessárias
+        Id = Guid.NewGuid().ToString();
+        CriadoEm = DateTime.Now;
+        User = new User();
+        Spaces = new Spaces();
+        
     }
 }
