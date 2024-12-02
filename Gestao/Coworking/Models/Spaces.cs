@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Coworking.Models;
 
-namespace API.Models
+namespace Coworking.Models
 {
     public class Spaces
     {
         public Spaces()
         {
             Id = Guid.NewGuid().ToString();
+            Name = string.Empty;
         }
 
         public string Id { get; set; } 
@@ -16,6 +18,5 @@ namespace API.Models
         public int Capacity { get; set; }
         public decimal PricePerHour { get; set; }
        
- }
-
+    }
 }

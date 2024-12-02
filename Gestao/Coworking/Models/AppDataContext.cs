@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-
+using Coworking.Models;
 namespace API.Models;
 
 public class AppDataContext : DbContext

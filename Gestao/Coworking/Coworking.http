@@ -5,7 +5,7 @@ GET http://localhost:5071
 GET http://localhost:5071/user
 
 ### Buscar user
-GET http://localhost:5071/user/741a6a56-ce34-46d8-964c-02d0baae5155
+GET http://localhost:5071/user/af1006d7-3b56-4510-94ef-0df9f8b39e27	
 
 ### Cadastrar user
 POST http://localhost:5071/user
@@ -20,10 +20,10 @@ Content-Type: application/json
 }
 
 ### Deletar user
-DELETE http://localhost:5071/user/741a6a56-ce34-46d8-964c-02d0baae5155
+DELETE http://localhost:5071/user/b69da8ff-1f7f-461c-98c6-5ea6dcf73e6c
 
 ### Alterar user
-PUT http://localhost:5071/user/741a6a56-ce34-46d8-964c-02d0baae5155
+PUT http://localhost:5071/user/b69da8ff-1f7f-461c-98c6-5ea6dcf73e6c
 Content-Type: application/json
 
 {
@@ -43,20 +43,20 @@ Content-Type: application/json
 
 {
     "valor": 150,
-    "status": ,
+    "status": "Pendente",
     "Date": "2024-10-20T10:00:00"
 }
 
 ###Deletar payment
-DELETE http://localhost:5071/payment/bf78ee59-e447-4e3e-a0d0-179bbe07876d
+DELETE http://localhost:5071/payment/9da60345-55df-43d6-b0c9-82319aaac5c0
 
 ###Altera Payment
-PUT http://localhost:5071/payment/12aea8f2-1f62-47b1-9879-d1235f3711d4
+PUT http://localhost:5071/payment/9da60345-55df-43d6-b0c9-82319aaac5c0
 Content-Type: application/json
 
 {
     "valor": 200,
-    "status": ,
+    "status": "Pago",
     "Date": "2024-10-21T10:00:00"
 }
 
@@ -64,7 +64,7 @@ Content-Type: application/json
 GET http://localhost:5071/spaces
 
 ###Buscar Space 
-GET http://localhost:5071/spaces/E9112449-A026-45EC-8D08-6E7A41DAFA7E
+GET http://localhost:5071/spaces/
 
 
 ###Cadastrar Space
@@ -78,10 +78,10 @@ Content-Type: application/json
 }
 
 ###Deletar space
-DELETE http://localhost:5071/spaces/{id}
+DELETE http://localhost:5071/spaces/38f49513-9680-476f-9008-78eef29e71fa
 
 ###Alterar Space
-PUT http://localhost:5071/spaces/482c99c3-4e6b-458a-ac1a-024c8bfc8ea7
+PUT http://localhost:5071/spaces/38f49513-9680-476f-9008-78eef29e71fa
 Content-Type: application/json
 
 {
@@ -106,7 +106,7 @@ Content-Type: application/json
 DELETE http://localhost:5071/bookings/11faa79d-4874-401f-8b99-ac5fca8107fd
 
 ###alterar booking
-PUT http://localhost:5071/bookings/11faa79d-4874-401f-8b99-ac5fca8107fd
+PUT http://localhost:5071/bookings/a31b42e5-d19d-4164-97c4-3722981e7baa
 Content-Type: application/json
 
 {

@@ -1,3 +1,5 @@
+using Coworking.Models;
+
 namespace API.Models;
 
 public class Payment
@@ -9,7 +11,9 @@ public class Payment
     }
     public string? Id { get; set; }
     public double Valor { get; set; }
-    public string? status { get; set; }
+    public string? Status { get; set; }
     public DateTime CriadoEm { get; set; }
-    public User? user { get; set; }
+    public User? User { get; set; }
+    public string? UserId { get; set; }
+    public string? SpaceId { get; set; }
 }
