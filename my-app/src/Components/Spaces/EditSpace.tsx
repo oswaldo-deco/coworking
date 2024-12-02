@@ -4,6 +4,8 @@ import './EditSpace.css';
 function EditSpace() {
   const [spaceId, setSpaceId] = useState('');
   const [spaceName, setSpaceName] = useState('');
+  const [capacity, setCapacity] = useState<number | ''>('');
+  const [pricePerHour, setPricePerHour] = useState<number | ''>('');
   const [message, setMessage] = useState('');
   const [spaceFound, setSpaceFound] = useState(false);
 
@@ -20,6 +22,8 @@ function EditSpace() {
       })
       .then((data) => {
         setSpaceName(data.name);
+        setCapacity(data.capacity);
+        setPricePerHour(data.pricePerHour);
         setSpaceFound(true);
         setMessage('');
       })
@@ -32,7 +36,11 @@ function EditSpace() {
   const handleEdit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const updatedSpace = { name: spaceName };
+    const updatedSpace = {
+      name: spaceName,
+      capacity: capacity,
+      pricePerHour: pricePerHour,
+    };
 
     fetch(`http://localhost:5071/spaces/${spaceId}`, {
       method: 'PUT',
@@ -67,7 +75,9 @@ function EditSpace() {
             onChange={(e) => setSpaceId(e.target.value)}
             className="input"
           />
-          <button type="button" onClick={handleSearch} className="button">Buscar</button>
+          <button type="button" onClick={handleSearch} className="button">
+            Buscar
+          </button>
         </div>
       </form>
       {message && <p className="message">{message}</p>}
@@ -84,7 +94,32 @@ function EditSpace() {
               className="input"
             />
           </div>
-          <button type="submit" className="button">Atualizar</button>
+          <div className="form-group">
+            <label htmlFor="capacity">Capacidade</label>
+            <input
+              type="number"
+              id="capacity"
+              value={capacity}
+              onChange={(e) => setCapacity(Number(e.target.value))}
+              required
+              className="input"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="pricePerHour">Preço por Hora (R$)</label>
+            <input
+              type="number"
+              id="pricePerHour"
+              step="0.01"
+              value={pricePerHour}
+              onChange={(e) => setPricePerHour(Number(e.target.value))}
+              required
+              className="input"
+            />
+          </div>
+          <button type="submit" className="button">
+            Atualizar
+          </button>
         </form>
       )}
     </div>

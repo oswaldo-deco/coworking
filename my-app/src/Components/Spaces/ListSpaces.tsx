@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import './ListSpaces.css';
+import { useEffect, useState } from 'react';
+import { Space } from '../../Models/Space'; // Supondo que o modelo Space esteja em Models
+import './ListSpaces.css'; // Arquivo de estilo CSS
 
-function ListSpaces() {
-  const [spaces, setSpaces] = useState<any[]>([]); // Lista de espaços
-  const [message, setMessage] = useState('');
+const ListSpaces = () => {
+  const [spaces, setSpaces] = useState<Space[]>([]); // Lista de espaços
 
-  // Função para buscar os espaços
-  const fetchSpaces = () => {
-    fetch('http://localhost:5071/spaces', {
-      method: 'GET',
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Falha ao buscar espaços.');
-        }
-      })
-      .then((data) => {
-        setSpaces(data); // Armazena os espaços no estado
-        setMessage('');
-      })
-      .catch((error) => {
-        setMessage(error.message);
-      });
-  };
-
-  // Chama a função fetchSpaces quando o componente é montado
   useEffect(() => {
-    fetchSpaces();
+    fetchSpaces(); // Chama a função para buscar os espaços quando o componente monta
   }, []);
 
+  // Função para buscar os espaços da API
+  const fetchSpaces = () => {
+    fetch("http://localhost:5071/spaces") // Endpoint para buscar os espaços
+      .then((response) => response.json())
+      .then((data) => {
+        setSpaces(data); // Armazena os espaços no estado
+      })
+      .catch((error) => console.error("Erro ao buscar espaços:", error));
+  };
+
   return (
-    <div className="list-spaces">
+    <div className="spaces-list">
       <h2 className="title">Lista de Espaços</h2>
-      {message && <p className="message">{message}</p>}
-      <ul className="spaces-list">
-        {spaces.map((space) => (
-          <li key={space.id} className="space-item">
-            {`Nome do Espaço: ${space.name}`}
-            </li>
-        ))}
-      </ul>
+      <table className="table" cellPadding="10">
+        <thead className="thead">
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Capacidade</th>
+            <th>Preço por Hora</th>
+          </tr>
+        </thead>
+        <tbody className="tbody">
+          {spaces.map((space) => (
+            <tr key={space.id} className="row">
+              <td>{space.id}</td>
+              <td>{space.name}</td>
+              <td>{space.capacity}</td>
+              <td>{space.pricePerHour}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
